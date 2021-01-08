@@ -1,7 +1,7 @@
 {
-  "name": "findhit-proxywrap",
-  "version": "0.3.12",
-  "description": "Wraps node's Server interfaces to be compatible with the PROXY protocol",
+  "name": "@short.io/proxywrap",
+  "version": "1.0.0-alpha.5",
+  "description": "Wraps node's Server interfaces to be compatible with the PROXY v1 or v2 protocol. Supports IPv4 and IPv6",
   "main": "lib/proxywrap.js",
   "author": "Josh Dague",
   "license": "BSD",
@@ -17,38 +17,44 @@
     {
       "name": "Gabriel Conceição",
       "email": "gabriel.conceicao@findhit.com"
+    },
+    {
+      "name": "Andrii Kostenko",
+      "email": "andrii@short.io"
     }
   ],
   "engines": {
-    "node": ">= 0.8"
+    "node": ">= 10"
   },
   "scripts": {
     "dev": "mocha --debug-brk=5858 --globals setImmediate,clearImmediate --check-leaks --colors -t 3000 --reporter spec $(find test/* -name '*.test.js')",
     "lint": "eslint .",
-    "test": "mocha --globals setImmediate,clearImmediate --check-leaks --colors -t 3000 --reporter spec $(find test/* -name '*.test.js')",
+    "test": "nyc mocha --globals setImmediate,clearImmediate --check-leaks --colors -t 3000 --exit --reporter spec $(find test/* -name '*.test.js')",
     "preversion": "npm test",
     "postversion": "git push origin master && git push origin --tags && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/findhit/proxywrap"
+    "url": "https://github.com/short-io/proxywrap"
   },
   "dependencies": {
-    "findhit-util": "^0.2.3"
+    "@balena/proxy-protocol-parser": "^1.0.2"
   },
   "devDependencies": {
-    "bluebird": "^2.5.3",
-    "chai": "^1.10.0",
-    "eslint": "^3.19.0",
-    "mocha": "^2.1.0",
-    "sinon": "^1.12.2",
-    "spdy": "^3.4.4"
+    "chai": "^4.2.0",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.2",
+    "spdy": "^4.0.2"
   },
   "keywords": [
     "proxy",
     "elb"
   ],
   "bugs": {
-    "url": "https://github.com/findhit/proxywrap/issues"
+    "url": "https://github.com/short-io/proxywrap/issues"
   }
 }
